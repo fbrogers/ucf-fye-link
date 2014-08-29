@@ -27,7 +27,10 @@ if(is_post() && isset($_POST['pid']) && is_numeric($_POST['pid'])){
 
 	//commit query
 	$result = sqlsrv_query($conn, $query, [$term, $pid]) or die(print_r(sqlsrv_errors(), true));
-	sqlsrv_has_rows($result) or die("Invalid UCFID");
+	if(!sqlsrv_has_rows($result)){
+		header("Location: invalid");
+		exit();
+	}
 	$row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
 	
 	//assign variables
