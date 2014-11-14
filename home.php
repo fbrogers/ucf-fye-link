@@ -21,12 +21,7 @@
 		out of their rooms and into the UCF community. With events from academic and learning
 		programs to interaction and community-building events, there is something to help
 		every student feel right at home.
-	</p>	
-	<ul class="link-list bullets">
-		<li><a href="about">Why LINK?</a></li>
-		<li><a href="programs">Current LINK Programs</a></li>
-		<li><a href="submit">Submit a LINK Program</a></li>
-	</ul>
+	</p>
 
 	<h2 class="header">Upcoming Programs</h2>
 	<?php $sessions = getSessions(); ?>

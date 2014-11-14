@@ -40,11 +40,9 @@
 	
 	<h3>SGA Tuition Scholarship (Fall)</h3>	
 	<p>
-		The Fall term brings with it the chance to win a $1,500 tuition scholarship
-		provided by SGA. Students that have accrued over 10,000 LINK points will be put into
-		a drawing, and a winner will be randomly selected at the end of the term. Students'
-		LINK Loot does not get used up for being put in the raffle, and they will continue to
-		have those points when the Spring term begins.
+		The Fall term brings with it the chance to win a $1,500 tuition scholarship provided by 
+		SGA! In November, an application will go out to all FTIC students with the scholarship 
+		details and how to apply. 
 	</p>
 	
 	<h3>The LINK Auction (Spring)</h3>	
