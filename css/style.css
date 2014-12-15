@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+.grid{
+	font-family: Arial, Verdana, sans-serif;
+}
+
 .partners a{
 	color: #600;
 }
