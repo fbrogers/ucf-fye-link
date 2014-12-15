@@ -11,7 +11,7 @@
 		"SELECT TOP 6 
 			S.sessionId, S.eventId, D.departmentName, themeName, E.themeId, 
 			eventName, eventPoints, eventDescription, contactName, contactEmail, 
-			sessionStart, sessionEnd, sessionLocation, sessionMapId
+			sessionStart, sessionEnd, sessionLocation, sessionRoom, sessionMapId
 		FROM [session] S
 		INNER JOIN [event] E ON S.eventId = E.eventId
 		INNER JOIN [department] D ON E.departmentId = D.departmentId
@@ -28,8 +28,9 @@
 	}
 
 	function printSessions($sessions){
-		echo '<script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>';
-		if(isset($sessions)): foreach($sessions as $row): ?>
+		if(!empty($sessions)){
+			echo '<script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>';
+			foreach($sessions as $row){ ?>
 		<div class="news">
 			<div class="news-theme">
 				<img src="images/theme/<?= $row['themeId'] ?>.png" alt="theme" /><br />
@@ -51,17 +52,38 @@
 				<!-- /FACEBOOK SHARE -->
 			</div>
 			<div class="news-content">
-				<h2><a href="programs/<?= $row['eventId'] ?>/<?= $row['sessionId'] ?>"><?= $row['eventName'] ?></a></h2>
-				<h4><?= display_date($row['sessionStart'], $row['sessionEnd']) ?></h4>
-				<h4><a href="http://map.ucf.edu/?show=<?= $row['sessionMapId'] ?>"><?= $row['sessionLocation'] ?></a></h4>
+				<div class="news-title bullets">
+					<a href="programs/<?= $row['eventId'] ?>/<?= $row['sessionId'] ?>">
+						<?= $row['eventName'] ?>
+					</a>
+				</div>
+
+				<div class="news-strapline">
+					<?= display_date($row['sessionStart'], $row['sessionEnd']) ?>
+				</div>
+
+				<div class="news-strapline">
+					<a href="http://map.ucf.edu/?show=<?= $row['sessionMapId'] ?>"><?= $row['sessionLocation'] ?></a>
+					<?= $row['sessionRoom'] ?>
+				</div>
+
 				<?php if($row['contactName'] != NULL): ?>
-				<h4>Contact: <a href="mailto:<?= $row['contactEmail']; ?>"><?= $row['contactName'] ?></a></h4>
+					<div class="datestamp">
+						Contact:
+						<a href="mailto:<?= $row['contactEmail']; ?>"><?= $row['contactName'] ?></a>
+					</div>
 				<?php endif; ?>
-				<p><?= nl2br($row['eventDescription']) ?></p>
+
+				<p>
+					<?= nl2br($row['eventDescription']) ?>
+				</p>
 			</div>
 		</div>
 		<div class="hr-blank"></div>
-		<?php endforeach; endif;
+		<?php }
+		} else {
+			echo '<p class="larger">No sessions for the current month.</p>';
+		}
 	}
 	
 	function getEvents($conn){

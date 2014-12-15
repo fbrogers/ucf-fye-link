@@ -159,7 +159,7 @@ if(isset($_GET['xid'])){
 
 	$query = "SELECT S.sessionId, S.eventId, D.departmentName, themeName, E.themeId, 
 			eventName, eventPoints, eventDescription, contactName, contactEmail, 
-			sessionStart, sessionEnd, sessionLocation , sessionMapId
+			sessionStart, sessionEnd, sessionLocation, sessionRoom, sessionMapId
 			FROM [session] S
 			INNER JOIN [event] E ON S.eventId = E.eventId
 			INNER JOIN [department] D ON E.departmentId = D.departmentId
@@ -179,16 +179,9 @@ if(isset($_GET['xid'])){
 
 	<div class="sidebar-right">
 		<img src="images/logo-white.jpg" alt="" class="floatright" />
-
-		<div class="hr-blank"></div>
-
-		<div class="event-title">Upcoming Events</div>
-		<ul class="events">
-			<?php getEvents($conn) ?>
-		</ul>
 	</div>
 
-	<div class="hr-blank"></div>
+	<div class="hr"></div>
 
 	<p><em>
 		Students cannot earn multiple points for attending multiple sessions of the
